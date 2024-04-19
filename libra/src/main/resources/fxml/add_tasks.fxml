@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="542.0" prefWidth="328.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.libra.controllers.add_tasks">
+   <children>
+      <VBox prefHeight="544.0" prefWidth="326.0" styleClass="shadow" stylesheets="@../style.css">
+         <children>
+            <ImageView fx:id="image" fitHeight="328.0" fitWidth="344.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chercher.png" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="168.0" prefWidth="335.0">
+               <children>
+                  <VBox prefHeight="198.0" prefWidth="202.0">
+                     <children>
+                        <Label text="Titre Oeuvre">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans MT" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Description">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Prix">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans MT" size="17.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="43.0" prefWidth="142.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="67.0" text="Lien Image">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Gill Sans MT" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="Parcourir" mnemonicParsing="false" onAction="#parcourirImage" prefHeight="26.0" prefWidth="25.0" style="-fx-background-color: #e8b8b0;" stylesheets="@../style.css" text="...">
+                                 <HBox.margin>
+                                    <Insets left="50.0" top="6.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="Choisir Categorie">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans MT" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="222.0" prefWidth="209.0">
+                     <children>
+                        <TextField fx:id="titreField" prefHeight="26.0" prefWidth="164.0" style="-fx-background-color: #e8b8b0;" styleClass="shadow" stylesheets="@../style.css">
+                           <VBox.margin>
+                              <Insets right="10.0" top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="descriptionField" style="-fx-background-color: #e8b8b0;" styleClass="shadow" stylesheets="@../style.css">
+                           <VBox.margin>
+                              <Insets right="10.0" top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="prixField" style="-fx-background-color: #e8b8b0;" styleClass="shadow" stylesheets="@../style.css">
+                           <VBox.margin>
+                              <Insets right="10.0" top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="imgField" style="-fx-background-color: #e8b8b0;" styleClass="shadow" stylesheets="@../style.css">
+                           <VBox.margin>
+                              <Insets right="10.0" top="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <ChoiceBox fx:id="categorieChoiceBox" prefWidth="150.0" style="-fx-background-color: #e8b8b0;" styleClass="Basket-button" stylesheets="@../style.css">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ChoiceBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="Back" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Backto" stylesheets="@../style.css" text="←" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="Categories-button" />
+                        <String fx:value="shadowwww" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="Ajouter" mnemonicParsing="false" onAction="#ajouterProduct" prefHeight="34.0" prefWidth="92.0" stylesheets="@../style.css" text="Ajouter" textFill="WHITE">
+                     <font>
+                        <Font name="Gill Sans MT" size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="Categories-button" />
+                        <String fx:value="shadowwww" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="scroll-bar" />
+      <String fx:value="top-bar" />
+   </styleClass>
+   <stylesheets>
+      <URL value="@../style.css" />
+      <URL value="@../style.css" />
+   </stylesheets>
+</AnchorPane>

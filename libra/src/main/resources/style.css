@@ -1,0 +1,103 @@
+.search-box{
+        -fx-background-color:#FFFFFF;
+        -fx-background-radius: 100;
+}
+
+.transparent{
+        -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+        -fx-background-color: #faf0e6;
+        -fx-background-radius: 30;
+}
+.Categories-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}
+.logo-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}
+.shop-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}
+.whoarewe-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}
+.Myprofile-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}.Basket-button{
+        -fx-background-color: #742b1f;
+        -fx-background-radius: 30;
+}.SCROLLPAN{
+          -fx-background:#e2c09e;
+
+}.scroll-bar{
+          -fx-background-color: #e8b8b0;
+
+}
+
+
+.shadow{
+        -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.top-bar{
+        -fx-background-color: #e2c09e;
+}
+.img.rounded-corners {
+        border-radius: 30px;
+}
+.selected{
+        -fx-background-color: #766f64;
+}
+.mouse-moved :hover{
+        -fx-background-color: #cac6c3;
+}
+
+.Product-Vbox{
+        -fx-background-color: #bb8e6d;
+        -fx-background-radius: 30;
+        border-radius: 30px;
+}
+
+.table-column-cell{
+        -fx-background-color:rgb(188,143,143);
+        -fx-border-color:rgb(159,159,159);
+}
+/*.right-bar{
+        -fx-background-color: #D3D3D3;
+}
+.chosen-fruit-card{
+        -fx-background-color: #874e33;
+        -fx-background-radius: 30;
+}
+
+.comboBox{
+        -fx-background-color: rgba(255,255,255,0.3);
+        -fx-background-radius: 30;
+}
+
+.add-btn{
+        -fx-background-color: #FFFFFF;
+        -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+        -fx-background-color: #D3D3D3;
+        -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+        -fx-background-color: #BAEAC3;
+        -fx-background-radius: 30;
+}
+
+.fruit-item{
+        -fx-background-color: #FFFFFF;
+        -fx-background-radius: 30;
+}*/
