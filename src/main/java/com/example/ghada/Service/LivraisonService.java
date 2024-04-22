@@ -25,7 +25,7 @@ public class LivraisonService implements IService<Livraison> {
             prs.setInt(4, l.getPostal_code());
             prs.setString(5, l.getCountry());
             prs.setString(6, l.getCity());
-            prs.setInt(0,l.getStatus());
+            prs.setInt(1,l.getStatus());
             prs.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
