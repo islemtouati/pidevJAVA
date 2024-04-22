@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ghada.LivraisonController">
+   <children>
+      <TableView layoutX="143.0" layoutY="76.0" prefHeight="298.0" prefWidth="737.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="id_livreur" prefWidth="75.0" text="ID_Livreur" />
+            <TableColumn fx:id="tel" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="firstname" prefWidth="75.0" text="Tel" />
+            <TableColumn fx:id="lastname" prefWidth="75.0" text="Firstname" />
+            <TableColumn fx:id="postalcode" prefWidth="75.0" text="Lastname" />
+            <TableColumn fx:id="country" prefWidth="75.0" text="Postal Code" />
+            <TableColumn fx:id="city" prefWidth="75.0" text="Country" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="City" />
+            <TableColumn fx:id="adresse1" prefWidth="75.0" text="status" />
+        </columns>
+      </TableView>
+
+   </children>
+</AnchorPane>
