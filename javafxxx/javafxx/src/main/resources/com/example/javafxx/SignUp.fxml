@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxx.controllers.SignUpController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="174.0" style="-fx-background-color: black;" />
+      <AnchorPane prefHeight="400.0" prefWidth="566.0">
+         <children>
+            <Button fx:id="button_to_login" layoutX="291.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Login!" textFill="#0400ff" underline="true" />
+            <Label layoutX="40.0" layoutY="48.0" text="nom" />
+            <Label layoutX="244.0" layoutY="48.0" text="prenom" />
+            <Label layoutX="46.0" layoutY="181.0" text="tel" />
+            <Label layoutX="38.0" layoutY="95.0" text="email" />
+            <Label layoutX="240.0" layoutY="181.0" text="password" />
+            <TextField fx:id="tf_pwd" layoutX="301.0" layoutY="177.0" />
+            <TextField fx:id="tf_nom" layoutX="86.0" layoutY="44.0" />
+            <Button fx:id="button_signup" layoutX="152.0" layoutY="263.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="205.0" text="SignUp" />
+            <Label layoutX="182.0" layoutY="303.0" text="Already a member ?" />
+            <TextField fx:id="tf_prenom" layoutX="301.0" layoutY="44.0" />
+            <TextField fx:id="tf_email" layoutX="86.0" layoutY="91.0" prefHeight="25.0" prefWidth="364.0" />
+            <TextField fx:id="tf_tel" layoutX="86.0" layoutY="177.0" />
+            <TextField fx:id="tf_adress" layoutX="86.0" layoutY="135.0" />
+            <Label layoutX="40.0" layoutY="139.0" text="adress" />
+            <Label layoutX="244.0" layoutY="139.0" text="role" />
+            <ChoiceBox fx:id="tf_rolee" layoutX="302.0" layoutY="145.0" prefWidth="150.0" style="-fx-background-color: transparent;" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

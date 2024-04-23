@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxx.controllers.HelloController">
+   <children>
+      <Label fx:id="welcom_label" layoutX="278.0" layoutY="76.0" text="welcom!" />
+      <Button fx:id="button_logout" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Logout" textFill="#ac2020" />
+   </children>
+</AnchorPane>
