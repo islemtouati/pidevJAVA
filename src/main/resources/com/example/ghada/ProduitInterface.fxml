@@ -3,280 +3,208 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="918.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="997.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ghada.ProductController">
    <children>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="224.0" prefWidth="305.0" />
-      <AnchorPane layoutX="612.0" layoutY="67.0" prefHeight="224.0" prefWidth="305.0">
+      <FlowPane layoutX="151.0" layoutY="14.0" prefHeight="474.0" prefWidth="738.0">
          <children>
-            <VBox layoutX="36.0" prefHeight="200.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="326.0" style="-fx-border-color: #c4722e; -fx-border-width: 1;">
                <children>
-                  <HBox prefHeight="33.0" prefWidth="230.0">
+                  <VBox layoutX="76.0" layoutY="14.0" prefHeight="221.0" prefWidth="318.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox prefHeight="38.0" prefWidth="140.0">
+                        <HBox prefHeight="59.0" prefWidth="376.0">
                            <children>
-                              <Label fx:id="nom_produit1" prefHeight="20.0" prefWidth="110.0" text="Les misérables">
-                                 <VBox.margin>
-                                    <Insets left="19.0" />
-                                 </VBox.margin>
+                              <Label fx:id="id_nomproduit1" prefHeight="59.0" prefWidth="250.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="id_prixproduit1" prefHeight="58.0" prefWidth="146.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nom_auteur_produit1" text="Victor Hugo">
-                                 <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="152.0" prefWidth="318.0">
+                           <children>
+                              <ImageView fx:id="id_imgproduit1" fitHeight="152.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5YcvoJLfkdz6-xt3-kSTj8WrGE6NAEjTfrp-vB3RI66sGwTxu" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="id_descproduit1" prefHeight="150.0" prefWidth="158.0" textFill="#794215" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
-                        </VBox>
-                        <Label fx:id="prix_produit1" prefHeight="27.0" prefWidth="124.0" text="100.00 DT">
-                           <HBox.margin>
-                              <Insets left="100.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="138.0" prefWidth="306.0">
-                     <children>
-                        <ImageView fx:id="image_produit1" fitHeight="136.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/les_miserables-83116-264-432.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="desc_produit1" prefHeight="128.0" prefWidth="217.0" text="Les Misérables est à la fois un roman&#10;d'inspiration réaliste, épique et &#10;romantique, un hymne à l'amour &#10;et un roman politique et social. &#10;Roman réaliste, Les Misérables décrit&#10;tout un univers de gens humbles. ">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="54.0" prefWidth="306.0">
-                     <children>
-                        <Button fx:id="button_ajout1" mnemonicParsing="false" text="Ajouter">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="230.0" top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  </VBox>
+                  <Spinner fx:id="id_quantite1" layoutX="14.0" layoutY="219.0" prefHeight="26.0" prefWidth="101.0" style="-fx-border-color: #c4722e;" />
+                  <Button fx:id="AjoutP1" layoutX="221.0" layoutY="220.0" mnemonicParsing="false" onAction="#AjoutPanier" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #c4722e; -fx-border-color: #c4722e; -fx-border-radius: 5;" text="Ajouter" textFill="WHITE" />
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="306.0" layoutY="67.0" prefHeight="224.0" prefWidth="305.0">
-         <children>
-            <VBox layoutX="36.0" prefHeight="200.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="326.0" style="-fx-border-color: #c4722e; -fx-border-width: 1;">
                <children>
-                  <HBox prefHeight="33.0" prefWidth="230.0">
+                  <VBox layoutX="76.0" layoutY="14.0" prefHeight="221.0" prefWidth="318.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox prefHeight="38.0" prefWidth="140.0">
+                        <HBox prefHeight="59.0" prefWidth="376.0">
                            <children>
-                              <Label fx:id="nom_produit2" prefHeight="20.0" prefWidth="110.0" text="Les misérables">
-                                 <VBox.margin>
-                                    <Insets left="19.0" />
-                                 </VBox.margin>
+                              <Label fx:id="id_nomproduit11" prefHeight="59.0" prefWidth="251.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="id_prixproduit11" prefHeight="58.0" prefWidth="142.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nom_auteur_produit2" text="Victor Hugo">
-                                 <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="152.0" prefWidth="318.0">
+                           <children>
+                              <ImageView fx:id="id_imgproduit11" fitHeight="152.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5YcvoJLfkdz6-xt3-kSTj8WrGE6NAEjTfrp-vB3RI66sGwTxu" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="id_descproduit11" prefHeight="150.0" prefWidth="158.0" textFill="#794215" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
-                        </VBox>
-                        <Label fx:id="prix_produit2" prefHeight="27.0" prefWidth="124.0" text="100.00 DT">
-                           <HBox.margin>
-                              <Insets left="100.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="138.0" prefWidth="306.0">
-                     <children>
-                        <ImageView fx:id="image_produit2" fitHeight="136.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/les_miserables-83116-264-432.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="desc_produit2" prefHeight="128.0" prefWidth="217.0" text="Les Misérables est à la fois un roman&#10;d'inspiration réaliste, épique et &#10;romantique, un hymne à l'amour &#10;et un roman politique et social. &#10;Roman réaliste, Les Misérables décrit&#10;tout un univers de gens humbles. ">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="54.0" prefWidth="306.0">
-                     <children>
-                        <Button fx:id="button_ajout2" mnemonicParsing="false" text="Ajouter">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="230.0" top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  </VBox>
+                  <Spinner fx:id="id_quantite2" layoutX="14.0" layoutY="219.0" prefHeight="26.0" prefWidth="101.0" style="-fx-border-color: #c4722e;" />
+                  <Button fx:id="AjoutP2" layoutX="221.0" layoutY="220.0" mnemonicParsing="false" onAction="#AjoutPanier" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #c4722e; -fx-border-color: #c4722e; -fx-border-radius: 5;" text="Ajouter" textFill="#efeded" />
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="306.0" layoutY="291.0" prefHeight="224.0" prefWidth="305.0">
-         <children>
-            <VBox layoutX="36.0" prefHeight="200.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="326.0" style="-fx-border-color: #c4722e; -fx-border-width: 1;">
                <children>
-                  <HBox prefHeight="33.0" prefWidth="230.0">
+                  <VBox layoutX="76.0" layoutY="14.0" prefHeight="221.0" prefWidth="318.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox prefHeight="38.0" prefWidth="140.0">
+                        <HBox prefHeight="59.0" prefWidth="376.0">
                            <children>
-                              <Label fx:id="nom_produit21" prefHeight="20.0" prefWidth="110.0" text="Les misérables">
-                                 <VBox.margin>
-                                    <Insets left="19.0" />
-                                 </VBox.margin>
+                              <Label fx:id="id_nomproduit12" prefHeight="59.0" prefWidth="250.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="id_prixproduit12" prefHeight="58.0" prefWidth="120.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="25.0" />
+                                 </HBox.margin>
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nom_auteur_produit21" text="Victor Hugo">
-                                 <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="152.0" prefWidth="318.0">
+                           <children>
+                              <ImageView fx:id="id_imgproduit12" fitHeight="152.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5YcvoJLfkdz6-xt3-kSTj8WrGE6NAEjTfrp-vB3RI66sGwTxu" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="id_descproduit12" prefHeight="150.0" prefWidth="158.0" textFill="#794215" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
-                        </VBox>
-                        <Label fx:id="prix_produit21" prefHeight="27.0" prefWidth="124.0" text="100.00 DT">
-                           <HBox.margin>
-                              <Insets left="100.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="138.0" prefWidth="306.0">
-                     <children>
-                        <ImageView fx:id="image_produit21" fitHeight="136.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/les_miserables-83116-264-432.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="desc_produit21" prefHeight="128.0" prefWidth="217.0" text="Les Misérables est à la fois un roman&#10;d'inspiration réaliste, épique et &#10;romantique, un hymne à l'amour &#10;et un roman politique et social. &#10;Roman réaliste, Les Misérables décrit&#10;tout un univers de gens humbles. ">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="54.0" prefWidth="306.0">
-                     <children>
-                        <Button fx:id="button_ajout21" mnemonicParsing="false" text="Ajouter">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="230.0" top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  </VBox>
+                  <Spinner fx:id="id_quantite3" layoutX="14.0" layoutY="219.0" prefHeight="26.0" prefWidth="101.0" style="-fx-border-color: #c4722e;" />
+                  <Button fx:id="AjoutP3" layoutX="221.0" layoutY="220.0" mnemonicParsing="false" onAction="#AjoutPanier" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #c4722e; -fx-border-color: #c4722e; -fx-border-radius: 5;" text="Ajouter" textFill="#f7f4f4" />
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="612.0" layoutY="291.0" prefHeight="224.0" prefWidth="305.0">
-         <children>
-            <VBox layoutX="36.0" prefHeight="200.0" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="326.0" style="-fx-border-color: #c4722e; -fx-border-width: 1;">
                <children>
-                  <HBox prefHeight="33.0" prefWidth="230.0">
+                  <VBox layoutX="76.0" layoutY="14.0" prefHeight="221.0" prefWidth="318.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <VBox prefHeight="38.0" prefWidth="140.0">
+                        <HBox prefHeight="59.0" prefWidth="376.0">
                            <children>
-                              <Label fx:id="nom_produit22" prefHeight="20.0" prefWidth="110.0" text="Les misérables">
-                                 <VBox.margin>
-                                    <Insets left="19.0" />
-                                 </VBox.margin>
+                              <Label fx:id="id_nomproduit13" prefHeight="59.0" prefWidth="278.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="id_prixproduit13" prefHeight="58.0" prefWidth="100.0" textFill="#794215">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nom_auteur_produit22" text="Victor Hugo">
-                                 <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="152.0" prefWidth="318.0">
+                           <children>
+                              <ImageView fx:id="id_imgproduit13" fitHeight="152.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5YcvoJLfkdz6-xt3-kSTj8WrGE6NAEjTfrp-vB3RI66sGwTxu" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="id_descproduit13" prefHeight="150.0" prefWidth="158.0" textFill="#794215" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
-                        </VBox>
-                        <Label fx:id="prix_produit22" prefHeight="27.0" prefWidth="124.0" text="100.00 DT">
-                           <HBox.margin>
-                              <Insets left="100.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="138.0" prefWidth="306.0">
-                     <children>
-                        <ImageView fx:id="image_produit22" fitHeight="136.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../Downloads/les_miserables-83116-264-432.jpg" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="desc_produit22" prefHeight="128.0" prefWidth="217.0" text="Les Misérables est à la fois un roman&#10;d'inspiration réaliste, épique et &#10;romantique, un hymne à l'amour &#10;et un roman politique et social. &#10;Roman réaliste, Les Misérables décrit&#10;tout un univers de gens humbles. ">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="54.0" prefWidth="306.0">
-                     <children>
-                        <Button fx:id="button_ajout22" mnemonicParsing="false" text="Ajouter">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="230.0" top="5.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  </VBox>
+                  <Spinner fx:id="id_quantite4" layoutX="14.0" layoutY="219.0" prefHeight="26.0" prefWidth="101.0" style="-fx-border-color: #c4722e;" />
+                  <Button fx:id="AjoutP4" layoutX="221.0" layoutY="220.0" mnemonicParsing="false" onAction="#AjoutPanier" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #c4722e; -fx-border-color: #c4722e; border-r: 5;" text="Ajouter" textFill="#fcfafa" />
                </children>
-            </VBox>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </FlowPane>
    </children>
 </AnchorPane>

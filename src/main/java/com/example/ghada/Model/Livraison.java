@@ -1,49 +1,43 @@
 package com.example.ghada.Model;
 
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 
 public class Livraison {
     private  int id;
-    private int idlivreur;
     private String adresse;
     private int tel;
     private int first_name_id;
     private int last_name_id;
-    private String address;
     private int postal_code;
     private String country;
     private String city;
-    private int status;
+
+    private String firstname_client;
+    private String lastname_client;
 
 
-    public Livraison(int id, int idlivreur, String adresse, int tel, int first_name_id, int last_name_id, String address, int postal_code, String country, String city, int status) {
+    public Livraison(int id, String adresse, int tel, int first_name_id, int last_name_id, int postal_code, String country, String city, String firstname, String lastname) {
         this.id = id;
-        this.idlivreur = idlivreur;
         this.adresse = adresse;
         this.tel = tel;
         this.first_name_id = first_name_id;
         this.last_name_id = last_name_id;
-        this.address = address;
         this.postal_code = postal_code;
         this.country = country;
         this.city = city;
-        this.status = status;
+        this.firstname_client = firstname;
+        this.lastname_client = lastname;
     }
 
-    public Livraison(String adresse, int tel, String address, int postal_code, String country, String city, int status) {
+    public Livraison(String adresse, int tel, int postal_code, String country, String city, String firstname, String lastname) {
         this.adresse = adresse;
         this.tel = tel;
-        this.address = address;
         this.postal_code = postal_code;
         this.country = country;
         this.city = city;
-        this.status = status;
+        this.firstname_client = firstname_client;
+        this.lastname_client = lastname_client;
     }
-
-    public Livraison() {
-
-    }
-
 
     public int getId() {
         return id;
@@ -51,14 +45,6 @@ public class Livraison {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdlivreur() {
-        return idlivreur;
-    }
-
-    public void setIdlivreur(int idlivreur) {
-        this.idlivreur = idlivreur;
     }
 
     public String getAdresse() {
@@ -93,14 +79,6 @@ public class Livraison {
         this.last_name_id = last_name_id;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public int getPostal_code() {
         return postal_code;
     }
@@ -125,28 +103,35 @@ public class Livraison {
         this.city = city;
     }
 
-    public int getStatus() {
-        return status;
+    public String getFirstname_client() {
+        return firstname_client;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setFirstname_client(String firstname_client) {
+        this.firstname_client = firstname_client;
+    }
+
+    public String getLastname_client() {
+        return lastname_client;
+    }
+
+    public void setLastname_client(String lastname_client) {
+        this.lastname_client = lastname_client;
     }
 
     @Override
     public String toString() {
         return "Livraison{" +
                 "id=" + id +
-                ", idlivreur=" + idlivreur +
                 ", adresse='" + adresse + '\'' +
                 ", tel=" + tel +
                 ", first_name_id=" + first_name_id +
                 ", last_name_id=" + last_name_id +
-                ", address='" + address + '\'' +
                 ", postal_code=" + postal_code +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
-                ", status=" + status +
+                ", firstname_client='" + firstname_client + '\'' +
+                ", lastname_client='" + lastname_client + '\'' +
                 '}';
     }
 }

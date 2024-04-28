@@ -1,85 +1,119 @@
 package com.example.ghada;
-
 import com.example.ghada.Model.Livraison;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.ghada.Service.LivraisonService;
-
-import java.util.List;
-
-
-public class LivraisonController  {
-    private final LivraisonService LivraisonService = new LivraisonService();
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import java.io.IOException;
+import javafx.collections.FXCollections;
+import javafx.stage.Stage;
+public class LivraisonController {
+    private final LivraisonService livraisonService = new LivraisonService();
+    @FXML private TextField id_adresse, id_Tel, id_codepostal, id_nom, id_prenom, id_ville;
+    @FXML private ChoiceBox<String> id_pays;
     @FXML
-    private TableColumn<Livraison, String> city;
+    public void initialize() {
 
-    @FXML
-    private TableColumn<Livraison, String> country;
-
-    @FXML
-    private TableColumn<Livraison, Integer> firstname;
-
-    @FXML
-    private TableColumn<Livraison, Integer> id;
-
-    @FXML
-    private TableColumn<Livraison, Integer> idlivreur;
-
-    @FXML
-    private TableColumn<Livraison, Integer> lastname;
-
-    @FXML
-    private TableColumn<Livraison, Integer> postalcode;
-
-    @FXML
-    private TableColumn<Livraison, Integer> status;
-    @FXML
-    private TableColumn<Livraison, String> address;
-
-    @FXML
-    private TableColumn<Livraison, String> adresse;
-
-    @FXML
-    private TableView<Livraison> Livraisontable;
-
-    @FXML
-    private TableColumn<Livraison, Integer> tel;
-
-    @FXML
-
-
-
-    private void populateFields(Livraison livraison) {
-
+        id_pays.setItems(FXCollections.observableArrayList(
+                "Ariana", "Béja", "Ben Arous", "Bizerte", "Gabès", "Gafsa", "Jendouba",
+                "Kairouan", "Kasserine", "Kébili", "Kef", "Mahdia", "Manouba", "Médenine",
+                "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine",
+                "Tozeur", "Tunis", "Zaghouan"
+        ));
     }
-    private void configureTableView() {
-        this.id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        this.idlivreur.setCellValueFactory(new PropertyValueFactory<>("idlivreur"));
-        this.tel.setCellValueFactory(new PropertyValueFactory<>("tel"));
-        this.adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        this.firstname.setCellValueFactory(new PropertyValueFactory<>("firstname"));
-        this.lastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
-        this.address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        this.postalcode.setCellValueFactory(new PropertyValueFactory<>("postalcode"));
-        this.country.setCellValueFactory(new PropertyValueFactory<>("country"));
-        this.city.setCellValueFactory(new PropertyValueFactory<>("city"));
-        this.status.setCellValueFactory(new PropertyValueFactory<>("status"));
-
+    @FXML
+    void handleAjouterLivraison(ActionEvent event) {
+        StringBuilder errorMessage = new StringBuilder();
+        boolean inputValid = true;
+        if (id_adresse.getText().isEmpty()) {
+            errorMessage.append("L'adresse ne peut pas être vide.\n");
+            inputValid = false;
+        }
+        if (id_nom.getText().isEmpty()) {
+            errorMessage.append("Le nom ne peut pas être vide.\n");
+            inputValid = false;
+        }
+        if (id_prenom.getText().isEmpty() || !id_prenom.getText().matches("[a-zA-Zéèàêëïç\\s]+")) {
+            errorMessage.append("Le prénom ne peut pas être vide et ne doit contenir que des lettres et des espaces.\n");
+            inputValid = false;
+        }
+        if (id_ville.getText().isEmpty() || !id_ville.getText().matches("[a-zA-Zéèàêëïç\\s]+")) {
+            errorMessage.append("La ville ne peut pas être vide et ne doit contenir que des lettres et des espaces.\n");
+            inputValid = false;
+        }
+        if (!id_Tel.getText().matches("\\d{8}")) {
+            errorMessage.append("Le numéro de téléphone doit contenir exactement 8 chiffres.\n");
+            inputValid = false;
+        }
+        if (!id_codepostal.getText().matches("\\d{4}")) {
+            errorMessage.append("Le code postal doit être numérique et contenir  4 chiffres.\n");
+            inputValid = false;
+        }
+        if (!inputValid) {
+            showAlert(errorMessage.toString());
+            return;
+        }
+        if (id_pays.getValue() == null) {
+            errorMessage.append("Vous devez sélectionner un pays.\n");
+            inputValid = false;
+        } if (!inputValid) {
+            showAlert(errorMessage.toString());
+            return;
+        }
+        Livraison newLivraison = new Livraison(
+                id_adresse.getText(),
+                Integer.parseInt(id_Tel.getText()),
+                Integer.parseInt(id_codepostal.getText()),
+                id_pays.getValue(),
+                id_ville.getText(),
+                id_nom.getText(),
+                id_prenom.getText()
+        );
+        livraisonService.add(newLivraison);
+        showAlert("Livraison ajoutée avec succès!");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ghada/CommandeInterface.fxml"));
+        Parent commandeView = null;
+        try {
+            commandeView = loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            showAlert("Erreur lors de l'ajout de la livraison ou lors du chargement de l'interface de commande.");
+            throw new RuntimeException(ex);
+        }
+        Scene scene = new Scene(commandeView);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
-
-    private void refreshTableView() {
-        List <Livraison> livraison = this.LivraisonService.getAll();
-        ObservableList<Livraison> livraisonObservableList = FXCollections.observableArrayList(livraison);
-        this.Livraisontable.setItems(livraisonObservableList);
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Validation de Livraison");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
-
+    @FXML
+    void handleSupprimerLivraison(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/ghada/ProduitInterface.fxml"));
+            Parent productView = loader.load();
+            Scene scene = new Scene(productView);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Erreur lors du chargement de l'interface produit.");
+        }
     }
+}
+
+
+
 
 
 

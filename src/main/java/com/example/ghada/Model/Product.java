@@ -1,6 +1,6 @@
 package com.example.ghada.Model;
 
-public class Produit {
+public class Product {
     private int id;
     private int category_id;
     private String titre;
@@ -8,7 +8,7 @@ public class Produit {
     private String description;
     private String img;
 
-    public Produit(int id, int category_id, String titre, double prix, String description, String img) {
+    public Product(int id, int category_id, String titre, double prix, String description, String img) {
         this.id = id;
         this.category_id = category_id;
         this.titre = titre;
@@ -17,7 +17,7 @@ public class Produit {
         this.img = img;
     }
 
-    public Produit(int category_id, String titre, double prix, String description, String img) {
+    public Product(int category_id, String titre, double prix, String description, String img) {
         this.category_id = category_id;
         this.titre = titre;
         this.prix = prix;

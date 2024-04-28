@@ -1,23 +1,64 @@
-.anchor-pane {
-    -fx-background-color: #f4f4f4; /* Couleur de fond de l'AnchorPane */
-}
 
-.label {
-    -fx-font-size: 16px; /* Taille de la police pour les labels */
-    -fx-text-fill: #333; /* Couleur du texte pour les labels */
-}
 
 .button {
-    -fx-background-color: #5a5; /* Couleur de fond des boutons */
-    -fx-text-fill: white; /* Couleur du texte des boutons */
-    -fx-padding: 10px 20px; /* Padding des boutons */
-    -fx-border-radius: 5; /* Bords arrondis des boutons */
+    -fx-background-color: #8B4513;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+
+.button:hover {
+    -fx-background-color: #A0522D;
 }
 
 .image-view {
-    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0); /* Ombre portée pour les images */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .check-box {
-    -fx-font-style: italic; /* Style de la police pour les checkboxes */
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.spinner {
+    -fx-font-size: 12px;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+.grid-pane {
+    -fx-border-color: lightgray; /* Add border around grid */
+    -fx-border-width: 1; /* Width of the border */
+    -fx-border-style: solid; /* Style of the border */
+}
+
+.grid-pane .grid-lines-visible {
+    -fx-grid-lines-visible: true; /* Make grid lines visible */
+}
+
+.item-pane {
+    -fx-background-color: #f0f0f0; /* Light gray background for each item */
+    -fx-padding: 10; /* Padding inside each item */
+    -fx-border-color: lightgray; /* Border color for each item */
+    -fx-border-width: 0.5; /* Border width for each item */
+}
+.grid-pane {
+    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-grid-lines-visible: false; /* Si vous ne voulez pas que les lignes soient visibles */
+}
+
+.item-pane {
+    -fx-background-color: #f0f0f0; /* Fond clair pour chaque item */
+    -fx-padding: 10; /* Espacement interne pour chaque item */
+    -fx-border-color: black; /* Cadre noir pour chaque item */
+    -fx-border-width: 1; /* Épaisseur du cadre */
+    -fx-border-style: solid; /* Style du cadre */
+}
+
+.scroll-pane {
+    -fx-background: white; /* Assurez-vous que le fond du ScrollPane est blanc */
 }

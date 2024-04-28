@@ -1,9 +1,8 @@
 package com.example.ghada.Service;
 
 
-import com.example.ghada.Model.Commande;
 import com.example.ghada.Model.IService;
-import com.example.ghada.Model.Produit;
+import com.example.ghada.Model.Product;
 import com.example.ghada.util.DataSource;
 
 import java.sql.Connection;
@@ -14,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-    public class ProduitService implements IService<Produit> {
+    public class ProductService implements IService<Product> {
         private Connection cnx;
         private PreparedStatement prs;
-        public ProduitService(){
+        public ProductService(){
             cnx= DataSource.getInstance().getConnection();
         }
-        public void add(Produit Pr) {
-            String requete = "insert into Produit(id,category_id,titre,prix,description,img) values(?,?,?,?,?) ";
+        public void add(Product Pr) {
+            String requete = "insert into product(id,category_id,titre,prix,description,img) values(?,?,?,?,?) ";
             try {
                 prs = cnx.prepareStatement(requete);
                 prs.setInt(1, Pr.getId());
@@ -35,16 +34,16 @@ import java.util.List;
                 throw new RuntimeException(e);
             }
         }
-        public void update(Produit produit, int id) {
-            String requete="update produit set category_id=?,titre=?,prix=?,description=?,img=? where id_produit=?";
+        public void update(Product product, int id) {
+            String requete="update product set category_id=?,titre=?,prix=?,description=?,img=? where id_product=?";
             {try {
                 prs = cnx.prepareStatement(requete);
 
-                prs.setInt(1, produit.getCategory_id());
-                prs.setString(2, produit.getTitre());
-                prs.setDouble(3, produit.getPrix());
-                prs.setString(4, produit.getDescription());
-                prs.setString(5,produit.getImg());
+                prs.setInt(1, product.getCategory_id());
+                prs.setString(2, product.getTitre());
+                prs.setDouble(3, product.getPrix());
+                prs.setString(4, product.getDescription());
+                prs.setString(5, product.getImg());
                 this.prs.executeUpdate();
             }catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -52,10 +51,8 @@ import java.util.List;
             }
         }
 
-
-
         public void delete(int id)   {
-            String requete="delete from produit where id_produit=?";
+            String requete="delete from product where id_product=?";
 
             try {
                 prs=cnx.prepareStatement(requete);
@@ -77,13 +74,13 @@ import java.util.List;
 
 
 
-        public List<Produit> getAll() {
-            String requete="Select * from produit";
-            List<Produit> list=new ArrayList<>();
-            try {
+        public List<Product> getAll() {
+            String requete="Select * from product";
+            List<Product> list=new ArrayList<>();
+            try (PreparedStatement prs = cnx.prepareStatement(requete)){
                 ResultSet rs=prs.executeQuery(requete);
                 while (rs.next()) {
-                    list.add(new Produit(
+                    list.add(new Product(
                             rs.getInt("id"),
                             rs.getInt("category_id"),
                             rs.getString("titre"),
@@ -97,8 +94,26 @@ import java.util.List;
             return list;
 
         }
-        public Produit getById(int id) {
+        public Product getById(int id) {
+            String requete = "SELECT * FROM product WHERE id = ?";
+            try {
+                prs = cnx.prepareStatement(requete);
+                prs.setInt(1, id);
+                ResultSet rs = prs.executeQuery();
+                if (rs.next()) {
+                    return new Product(
+                            rs.getInt("id"),
+                            rs.getInt("category_id"),
+                            rs.getString("titre"),
+                            rs.getDouble("prix"),
+                            rs.getString("description"),
+                            rs.getString("img"));
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             return null;
+
         }
 
 

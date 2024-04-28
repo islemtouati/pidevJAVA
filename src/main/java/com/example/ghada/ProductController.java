@@ -1,132 +1,93 @@
 package com.example.ghada;
+
 import javafx.event.ActionEvent;
-import com.example.ghada.Model.Livraison;
 import com.example.ghada.Model.Panier;
-import com.example.ghada.Model.Produit;
+import com.example.ghada.Model.Product;
 import com.example.ghada.Service.PanierService;
-import com.example.ghada.Service.ProduitService;
+import com.example.ghada.Service.ProductService;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
-import java.io.File;
-import java.net.URL;
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.util.List;
-import java.util.ResourceBundle;
-
-public class ProduitController  {
+public class ProductController {
     private final PanierService panierService = new PanierService();
-    private final ProduitService produitService = new ProduitService();
+    private final ProductService productService = new ProductService();
+    @FXML private Spinner<Integer> id_quantite1, id_quantite2, id_quantite3, id_quantite4;
+    @FXML private Label id_descproduit1, id_descproduit11, id_descproduit12, id_descproduit13;
+    @FXML private ImageView id_imgproduit1, id_imgproduit11, id_imgproduit12, id_imgproduit13;
+    @FXML private Label id_nomproduit1, id_nomproduit11, id_nomproduit12, id_nomproduit13;
+    @FXML private Label id_prixproduit1, id_prixproduit11, id_prixproduit12, id_prixproduit13;
+    public void initialize() {
 
-
-
-    @FXML
-    private Button Actualiser;
-    @FXML
-    private Button AjoutP;
-
-    @FXML
-    private Button AjoutP2;
-
-    @FXML
-    private Button AjoutP3;
-
-    @FXML
-    private Label id_descproduit1=new Label();
-
-    @FXML
-    private Label id_descproduit2;
-
-    @FXML
-    private ImageView id_imgproduit1;
-
-    @FXML
-    private ImageView id_imgproduit2;
-
-    @FXML
-    private Label id_nomproduit1=new Label();
-
-    @FXML
-    private Label id_nomproduit2;
-
-    @FXML
-    private Label id_prixproduit1=new Label();
-
-    @FXML
-    private Label id_prixproduit2;
-    private void populateFields(Produit produit) {
-
-        this.id_nomproduit1.setText(produit.getTitre());
-        this.id_descproduit1.setText(produit.getDescription());
-        this.id_prixproduit1.setText(Double.toString(produit.getPrix()));
+        loadProducts();
     }
-    @FXML
-    void Actualiser(ActionEvent event) {
-        configureLabels(); // Recharge et met à jour les labels avec de nouvelles données
-    }
-
-    private void configureLabels() {
-        List<Produit> produits = loadProduit(); // Charge tous les produits
-        if (!produits.isEmpty()) {
-            Produit produit = produits.get(0); // Prend le premier produit pour l'exemple
-            id_nomproduit1.setText("name: " + produit.getTitre());
-            id_descproduit1.setText("Name: " + produit.getDescription());
-            id_prixproduit1.setText("First Name: " + produit.getPrix());
+    private void loadProducts() {
+        List<Product> products = productService.getAll();
+        if (products.size() >= 4) {
+            setupProductView(products.get(0), id_nomproduit1, id_descproduit1, id_prixproduit1, id_imgproduit1, id_quantite1);
+            setupProductView(products.get(1), id_nomproduit11, id_descproduit11, id_prixproduit11, id_imgproduit11, id_quantite2);
+            setupProductView(products.get(2), id_nomproduit12, id_descproduit12, id_prixproduit12, id_imgproduit12, id_quantite3);
+            setupProductView(products.get(3), id_nomproduit13, id_descproduit13, id_prixproduit13, id_imgproduit13, id_quantite4);
         }
-
     }
-    private void setImageToImageView(ImageView id_imgproduit1, String imagePath) {
-        Image image = new Image(new File(imagePath).toURI().toString());
-        id_imgproduit1.setImage(image);
-    }
-
-
-
-
-    private List<Produit> loadProduit() {
-
-        // Your code to load personnel from database
-        System.out.println("Chargement des personnels depuis la base de données...");
-        List<Produit> produits = produitService.getAll(); // Adapt this line as per your actual service call
-
-        return produits;
+    private void setupProductView(Product product, Label name, Label desc, Label price, ImageView img, Spinner<Integer> qtySpinner) {
+        name.setText("Titre: " + product.getTitre());
+        desc.setText("Description: " + product.getDescription());
+        price.setText("Prix: " + product.getPrix());
+        img.setImage(new Image(product.getImg(), true));
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
+        qtySpinner.setValueFactory(valueFactory);
+        qtySpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            System.out.println("Nouvelle quantité sélectionnée: " + newValue);
+        });
     }
     @FXML
     void AjoutPanier(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        Produit produitToAdd = null;
 
-        // Sélectionnez le produit en fonction du bouton cliqué
-        if (clickedButton == AjoutP) {
-            produitToAdd = produitService.getById(1);
-        } else if (clickedButton == AjoutP2) {
-            produitToAdd = produitService.getById(2);
-        } else if (clickedButton == AjoutP3) {
-            produitToAdd = produitService.getById(4);
-        }
-
-        // Vérifiez si le produit à ajouter est valide
-        if (produitToAdd != null) {
+        try {
             try {
-                // Créez un nouvel objet Panier en utilisant le constructeur approprié
-                Panier panier = new Panier(produitToAdd.getId(), (int) produitToAdd.getPrix(), (int) produitToAdd.getPrix(), 1);
-                panierService.add(panier);
-                showAlert("Produit ajouté au panier !");
+                Button clickedButton = (Button) event.getSource();
+                String id = clickedButton.getId();
+                int productId = Integer.parseInt(id.replaceAll("[^0-9]", ""));
+                Product productToAdd = productService.getById(productId);
+
+                if (productToAdd != null) {
+                    String spinnerId = "#id_quantite" + productId;
+                    Spinner<Integer> quantitySpinner = (Spinner<Integer>) clickedButton.getScene().lookup(spinnerId);
+
+                    if (quantitySpinner != null) {
+                        int quantity = quantitySpinner.getValue();
+                        Panier panier = new Panier(123, 123, (int) productToAdd.getPrix(),(int) productToAdd.getPrix(), quantity, productToAdd.getTitre(), productToAdd.getDescription(), productToAdd.getImg());
+                        panierService.add(panier);
+                        showAlert("Produit ajouté au panier !");
+                    } else {
+                        showAlert("Erreur: Spinner non trouvé pour l'ID " + spinnerId);
+                    }
+                } else {
+                    showAlert("Produit non trouvé.");
+                }
+            } catch (NumberFormatException e) {
+                showAlert("Erreur lors de l'extraction de l'ID du produit: " + e.getMessage());
             } catch (Exception e) {
-                showAlert("Erreur lors de la création du panier : " + e.getMessage());
+                showAlert("Une erreur inattendue est survenue: " + e.getMessage());
             }
-        } else {
-            showAlert("Erreur lors de l'ajout du produit au panier : produit non trouvé.");
+            Parent panierView = FXMLLoader.load(getClass().getResource("/com/example/ghada/PanierInterface.fxml"));
+            Scene scene = new Scene(panierView);
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -135,12 +96,3 @@ public class ProduitController  {
         alert.showAndWait();
     }
 }
-
-
-
-
-
-
-
-
-
