@@ -1,0 +1,23 @@
+.anchor-pane {
+    -fx-background-color: #f4f4f4; /* Couleur de fond de l'AnchorPane */
+}
+
+.label {
+    -fx-font-size: 16px; /* Taille de la police pour les labels */
+    -fx-text-fill: #333; /* Couleur du texte pour les labels */
+}
+
+.button {
+    -fx-background-color: #5a5; /* Couleur de fond des boutons */
+    -fx-text-fill: white; /* Couleur du texte des boutons */
+    -fx-padding: 10px 20px; /* Padding des boutons */
+    -fx-border-radius: 5; /* Bords arrondis des boutons */
+}
+
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0); /* Ombre portée pour les images */
+}
+
+.check-box {
+    -fx-font-style: italic; /* Style de la police pour les checkboxes */
+}
