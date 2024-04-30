@@ -1,0 +1,4 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÜÈş’øÿÿÿÿ
+r
+java:S1128"URemove this unused import 'com.esprit.controllers.Reponse.AfficherReponseController'.(÷÷šÊ8·ø°ñ1

@@ -1,0 +1,20 @@
+
+
+java:S1488e"_Immediately return this expression instead of assigning it to the temporary variable "reponse".(ˆæõûùÿÿÿÿ8ìå´¯ñ1
+l
+java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªŠÄ»8ÿû˜°ñ1
+l
+java:S2095;"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªŠÄ»8ôå´¯ñ1
+L	java:S106%"+Replace this use of System.out by a logger.(ÑÎ´Ÿüÿÿÿÿ8şå´¯ñ1
+G	java:S106'"+Replace this use of System.out by a logger.(®©ê¾8şå´¯ñ1
+G	java:S106*"+Replace this use of System.out by a logger.(¼ï‚×8ÿå´¯ñ1
+L	java:S106,"+Replace this use of System.err by a logger.(ñ¾ôÎøÿÿÿÿ8ƒæ´¯ñ1
+G	java:S1062"+Replace this use of System.err by a logger.(À‡‹¨8¢Í°ñ1
+L	java:S106A"+Replace this use of System.out by a logger.(ñ¢÷¾üÿÿÿÿ8€æ´¯ñ1
+G	java:S106C"+Replace this use of System.out by a logger.(Òô ³8€æ´¯ñ1
+L	java:S106F"+Replace this use of System.out by a logger.(›º½¯ùÿÿÿÿ8æ´¯ñ1
+L	java:S106R"+Replace this use of System.out by a logger.(›‹¥ùÿÿÿÿ8…æ´¯ñ1
+L	java:S106T"+Replace this use of System.out by a logger.(ŞÅ×’şÿÿÿÿ8¥Í°ñ1
+L	java:S106W"+Replace this use of System.out by a logger.(”Ûß¾ûÿÿÿÿ8¥Í°ñ1
+L	java:S106i"+Replace this use of System.err by a logger.(¤¨¸åÿÿÿÿÿ8§Í°ñ1
+G	java:S106|"+Replace this use of System.out by a logger.(Ï‰Â¼8¨Í°ñ1

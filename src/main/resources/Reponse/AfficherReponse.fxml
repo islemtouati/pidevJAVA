@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Reponse.AfficherReponseController">
+    <SplitPane dividerPositions="0.38577154308617234" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <VBox minWidth="200.0" prefWidth="300.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label text="Consulter Réponses" style="-fx-font-size: 24px; -fx-padding: 10px;" VBox.vgrow="NEVER"/>
+                    <ListView fx:id="reponsesListView" prefHeight="573.0" prefWidth="288.0" VBox.vgrow="ALWAYS" />
+                    <HBox spacing="10">
+                        <children>
+                            <Button fx:id="addButton" onAction="#addReponse" styleClass="crud-button" text="Ajouter" />
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <AnchorPane minWidth="200.0" prefWidth="700.0">
+                <children>
+                    <VBox fx:id="detailsPane" layoutX="10.0" layoutY="30.0" spacing="10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+                        <children>
+                            <TextField fx:id="tfReponseId" promptText="ID Réponse" editable="false" />
+                            <TextField fx:id="tfReclamationId" promptText="ID Réclamation" editable="false" />
+                            <TextField fx:id="tfDateRep" promptText="Date de Réponse" editable="false" />
+                            <TextArea fx:id="taDescription" promptText="Description" prefHeight="200.0" wrapText="true" />
+                            <HBox spacing="10">
+                                <children>
+                                    <Button fx:id="btnUpdate" onAction="#updateReponse" styleClass="crud-button" text="Update" />
+                                    <Button fx:id="btnDelete" onAction="#deleteReponse" styleClass="crud-button" text="Delete" />
+                                </children>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
+</AnchorPane>

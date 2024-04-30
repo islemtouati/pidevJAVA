@@ -1,0 +1,8 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’…öëþÿÿÿÿ
+{
+java:S11712"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8½ï¹°ñ1
+P
+java:S1905@".Remove this unnecessary cast to "Reclamation".(Ççí™ÿÿÿÿÿ8¿ï¹°ñ1
+S
+java:S1128"1Remove this unused import 'javafx.util.Callback'.(¢œ»²ýÿÿÿÿ8­¡¹°ñ1

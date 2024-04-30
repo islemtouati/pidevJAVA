@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane fx:id="mainContentPane" stylesheets="@../styles.css" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F4F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Reclamation.AjouterReclamationController">
+    <children>
+        <!-- Center VBox within the StackPane -->
+        <VBox alignment="CENTER" spacing="20" maxWidth="300.0" maxHeight="200.0" style="-fx-background-color: #FFFFFF; -fx-padding: 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #CCCCCC;" StackPane.alignment="CENTER">
+            <children>
+                <TextField fx:id="tfDescription" promptText="Description" />
+                <DatePicker fx:id="dpDate" />
+                <Button text="Ajouter" onAction="#handleAjouterReclamation" styleClass="form-button"/>
+            </children>
+        </VBox>
+    </children>
+</StackPane>

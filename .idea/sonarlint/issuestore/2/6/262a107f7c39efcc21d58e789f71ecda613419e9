@@ -1,0 +1,17 @@
+
+l
+java:S2095'"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªŠÄ»8å¿•±ñ1
+l
+java:S2095="OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªŠÄ»8Õ’›¯ñ1
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Òõ™‹üÿÿÿÿ8å¿•±ñ1
+L	java:S106"+Replace this use of System.out by a logger.(¹Ìë¬ûÿÿÿÿ8‡¹–¯ñ1
+L	java:S106"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ8ˆ¹–¯ñ1
+G	java:S1060"+Replace this use of System.out by a logger.(šæ¦ç8¹–¯ñ1
+G	java:S1062"+Replace this use of System.out by a logger.(¢«­´8¹–¯ñ1
+F	java:S1065"+Replace this use of System.out by a logger.(åªü`8¹–¯ñ1
+L	java:S106A"+Replace this use of System.out by a logger.(Ÿ½±Úùÿÿÿÿ8’¹–¯ñ1
+G	java:S106C"+Replace this use of System.out by a logger.(Ñº´ƒ8’¹–¯ñ1
+G	java:S106F"+Replace this use of System.out by a logger.(ı±8“¹–¯ñ1
+L	java:S106X"+Replace this use of System.err by a logger.(—·§Ùıÿÿÿÿ8˜¹–¯ñ1
+G	java:S106l"+Replace this use of System.out by a logger.(úÒ8 ¹–¯ñ1

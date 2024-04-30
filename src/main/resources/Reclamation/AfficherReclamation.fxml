@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Reclamation.AfficherReclamationController">
+    <SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <VBox minWidth="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label text="Consulter Reclamations" style="-fx-font-size: 24px; -fx-padding: 10px;" VBox.vgrow="NEVER"/>
+                    <TilePane fx:id="reclamationsTilePane" prefHeight="573.0" prefWidth="488.0" VBox.vgrow="ALWAYS" />
+                    <HBox spacing="10">
+                        <children>
+                            <Button fx:id="addButton" onAction="#addReclamation" styleClass="crud-button" text="Ajouter" />
+                        </children>
+                    </HBox>
+                </children>
+            </VBox>
+            <AnchorPane minWidth="200.0" prefWidth="500.0">
+                <children>
+                    <VBox  fx:id="detailsPane" layoutX="10.0" layoutY="10.0" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <children>
+                            <Label text="Reclamation Details" style="-fx-font-size: 24px;"/>
+                            <TextField fx:id="tfId" promptText="ID" editable="false"/>
+                            <TextField fx:id="tfUserId" promptText="User ID" editable="false"/>
+                            <DatePicker fx:id="dpDate" promptText="Date"/>
+                            <TextArea fx:id="taDescription" promptText="Description"/>
+                            <TextField fx:id="tfEtat" promptText="Etat"/>
+                            <HBox spacing="10">
+                                <Button fx:id="btnUpdate" text="Update" onAction="#updateReclamation"/>
+                                <Button fx:id="btnDelete" text="Delete" onAction="#deleteReclamation"/>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
+</AnchorPane>
