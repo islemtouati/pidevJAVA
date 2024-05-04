@@ -1,7 +1,7 @@
-package com.webandit.libra.services;
+package com.LibraMarket.libra.services;
 
-import com.webandit.libra.models.Product;
-import com.webandit.libra.utils.DBConnection;
+import com.LibraMarket.libra.models.Product;
+import com.LibraMarket.libra.utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -87,4 +87,38 @@ public class ServiceProduct implements CRUD<Product> {
             preparedStatement.executeUpdate();
         }
     }
+
+    public List<Product> getAllOeuvres() {
+        List<Product> oeuvres = new ArrayList<>();
+        ServiceCatego sc=new ServiceCatego();
+        // SQL query to select all Oeuvres
+        String sql = "SELECT * FROM product";
+
+        try (PreparedStatement statement = cnx.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            // Iterate over the result set and create Oeuvre objects
+            while (resultSet.next()) {
+                // Retrieve data from the result set
+                String titre = resultSet.getString("titre");
+                double prix = resultSet.getDouble("prix");
+                String description = resultSet.getString("description");
+                String img = resultSet.getString("img");
+                int category_id = resultSet.getInt("category_id");
+                //Categorie categorie=sc.getCategorieById(idcateg);
+
+
+                // Create an Oeuvre object and add it to the list
+                Product oeuvre = new Product(titre, prix ,description, img, category_id);
+                oeuvres.add(oeuvre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to retrieve products from the database.");
+        }
+
+        return oeuvres;
+    }
+
+
 }

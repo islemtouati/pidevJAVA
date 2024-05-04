@@ -1,7 +1,7 @@
-package com.webandit.libra.services;
+package com.LibraMarket.libra.services;
 
-import com.webandit.libra.models.catego;
-import com.webandit.libra.utils.DBConnection;
+import com.LibraMarket.libra.models.catego;
+import com.LibraMarket.libra.utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;

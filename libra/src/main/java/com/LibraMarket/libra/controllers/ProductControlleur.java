@@ -1,7 +1,10 @@
-package com.webandit.libra.controllers;
+package com.LibraMarket.libra.controllers;
 
-import com.webandit.libra.models.Product;
-import com.webandit.libra.services.ServiceProduct;
+import com.LibraMarket.libra.models.GeneratePdf;
+import com.LibraMarket.libra.models.Product;
+import com.LibraMarket.libra.services.ServiceProduct;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,18 +14,29 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import java.io.File;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
+import javafx.scene.chart.PieChart;
 public class ProductControlleur {
     ServiceProduct taskSer = new ServiceProduct();
 
     @FXML
+    private PieChart PieChart;
+
+    @FXML
     private TableView<Product> ts_view; // Use the model class here
+
+
+    @FXML
+    private Button pdf;
 
     @FXML
     private TableColumn<Product, Double> ts_Prix;
@@ -43,7 +57,35 @@ public class ProductControlleur {
     private TableColumn<Product, Void> ts_view_action;
 
 
+    @FXML
+    void generatePDF(ActionEvent event) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save PDF File");
+            fileChooser.setInitialFileName("liste_oeuvres.pdf");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
+            File file = fileChooser.showSaveDialog(pdf.getScene().getWindow());
+
+            if (file != null) {
+                ServiceProduct serviceOeuvre = new ServiceProduct();
+                List<Product> oeuvresList = serviceOeuvre.getAllOeuvres();
+                ObservableList<Product> oeuvres = FXCollections.observableArrayList(oeuvresList);
+
+                if (!oeuvres.isEmpty()) {
+                    GeneratePdf.generatePDF(oeuvres, file);
+                    System.out.println("PDF generated successfully.");
+                } else {
+                    System.out.println("No data to generate PDF.");
+                }
+            } else {
+                System.out.println("No file selected.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("An error occurred while generating PDF.");
+        }
+    }
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -65,11 +107,11 @@ public class ProductControlleur {
         alert.show();
     }
     public void add_Task(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/add_tasks.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/add_product.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
 
         // Get the controller
-        add_tasks controller = fxmlLoader.getController();
+        Add_Product controller = fxmlLoader.getController();
 
         // Set the stage
         Stage stage = new Stage();
@@ -77,6 +119,8 @@ public class ProductControlleur {
         stage.setScene(new Scene(root1));
         stage.show();
     }
+
+
 
 
     public void affichertasks(){
@@ -96,6 +140,31 @@ public class ProductControlleur {
             showAlert("Error", "Error updating the task: " + e.getMessage());
             e.printStackTrace(); // Print the stack trace for debugging
         }
+    }
+
+    public List<Integer> countTasksByStatus(List<Product> tasksList) {
+        List<Integer> taskCounts = new ArrayList<>(3); // Initialize with three elements for each status
+
+        int doneCount = 0;
+        int inProgressCount = 0;
+        int toDoCount = 0;
+
+        for (Product task : tasksList) {
+            int status = task.getCategory_id();
+            if (status == 2) {
+                doneCount++;
+            } else if (status == 1) {
+                inProgressCount++;
+            } else if (status == 3) {
+                toDoCount++;
+            }
+        }
+
+        taskCounts.add(doneCount);
+        taskCounts.add(inProgressCount);
+        taskCounts.add(toDoCount);
+
+        return taskCounts;
     }
 
     @FXML
@@ -166,6 +235,7 @@ public class ProductControlleur {
 
         // Refresh the TableView
         affichertasks();
+        updatePieChartData();
     }
 
     // Method to handle edit commit events
@@ -193,6 +263,29 @@ public class ProductControlleur {
     public void refrech(ActionEvent event) {
         affichertasks(); // Refresh the TableView
     }
+    private void updatePieChartData() {
+        try {
+            // Step 1: Retrieve the list of tasks
+            List<Product> tasksList = taskSer.selectAll();
 
+            // Step 2: Get the counts for tasks in different statuses
+            List<Integer> taskCounts = countTasksByStatus(tasksList);
+            // Calculate total tasks count
+            int totalTasks = taskCounts.stream().mapToInt(Integer::intValue).sum(); // Declare and initialize totalTasks
+            // Step 3: Update PieChart data
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                    new PieChart.Data("Romance", taskCounts.get(2)), // Index 2 for Todo count
+                    new PieChart.Data("Horror", taskCounts.get(1)), // Index 1 for In Progress count
+                    new PieChart.Data("#", taskCounts.get(0)) // Index 0 for Complete count
+            );
+
+            PieChart.setData(pieChartData);
+            PieChart.setStartAngle(90);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Error", "Error updating PieChart data: " + e.getMessage());
+        }
+    }
 
 }

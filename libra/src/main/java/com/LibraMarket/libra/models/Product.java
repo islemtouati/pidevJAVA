@@ -1,4 +1,4 @@
-package com.webandit.libra.models;
+package com.LibraMarket.libra.models;
 
 public class Product {
     private int id;

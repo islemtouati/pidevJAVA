@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.libra.controllers.Project">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LibraMarket.libra.controllers.Category">
    <children>
       <StackPane fx:id="contentArea" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -62,7 +62,7 @@
                           </columns>
                         </TableView>
                         <Button layoutX="323.0" layoutY="107.0" mnemonicParsing="false" onAction="#selectChantier" text="select" />
-                        <Button layoutX="297.0" layoutY="395.0" mnemonicParsing="false" onAction="#Tasks" text="Hez lel task" />
+                        <Button layoutX="297.0" layoutY="395.0" mnemonicParsing="false" onAction="#Tasks" text="show product" />
                      </children>
                   </AnchorPane>
                </children>

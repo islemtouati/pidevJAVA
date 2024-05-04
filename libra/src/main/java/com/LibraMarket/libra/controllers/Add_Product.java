@@ -1,10 +1,10 @@
-package com.webandit.libra.controllers;
+package com.LibraMarket.libra.controllers;
 
 
-import com.webandit.libra.models.Product;
-import com.webandit.libra.models.catego;
-import com.webandit.libra.services.ServiceCatego;
-import com.webandit.libra.services.ServiceProduct;
+import com.LibraMarket.libra.models.Product;
+import com.LibraMarket.libra.models.catego;
+import com.LibraMarket.libra.services.ServiceCatego;
+import com.LibraMarket.libra.services.ServiceProduct;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 
 
-public class add_tasks {
+public class Add_Product {
 
     ServiceProduct pro = new ServiceProduct();
     ServiceCatego cat = new ServiceCatego();
@@ -55,7 +55,7 @@ public class add_tasks {
 
     @FXML
     private TextField titreField;
-    private String xamppFolderPath="c:/xampp/xampp/htdocs/img/";
+    private String xamppFolderPath="c:/xampp/htdocs/img/";
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

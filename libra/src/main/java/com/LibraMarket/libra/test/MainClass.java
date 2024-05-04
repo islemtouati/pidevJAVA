@@ -1,8 +1,8 @@
-package com.webandit.libra.test;
+package com.LibraMarket.libra.test;
 
-import com.webandit.libra.models.catego;
-import com.webandit.libra.services.ServiceCatego;
-import com.webandit.libra.utils.DBConnection;
+import com.LibraMarket.libra.models.catego;
+import com.LibraMarket.libra.services.ServiceCatego;
+import com.LibraMarket.libra.utils.DBConnection;
 
 import java.sql.Date;
 import java.sql.SQLException;

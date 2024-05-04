@@ -1,4 +1,4 @@
-package com.webandit.libra.models;
+package com.LibraMarket.libra.models;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -1,20 +1,23 @@
-package com.webandit.libra.controllers;
+package com.LibraMarket.libra.controllers;
 
-import com.webandit.libra.models.catego;
-import com.webandit.libra.services.ServiceCatego;
+import com.LibraMarket.libra.services.ServiceCatego;
+import com.LibraMarket.libra.models.catego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
-public class Project {
+public class Category {
     ServiceCatego ps = new ServiceCatego();
 
     @FXML
@@ -91,6 +94,13 @@ public class Project {
             catego ch = new catego(ch_nom.getText());
 
             ps.insertOne(ch);
+            Notifications notification = Notifications.create()
+                    .title("Notification")
+                    .text("Category Added ")
+                    .graphic(null) // You can set a graphic if needed
+                    .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                    .position(Pos.BOTTOM_RIGHT);
+            notification.show();
             afficherChantier();
         } catch (SQLException | NumberFormatException e) {
             showAlert("Erreur de saisie", "Erreur dans la saisie des données !");
@@ -103,7 +113,14 @@ public class Project {
         if (selectedChantier != null) {
             try {
                 ps.deleteOne(selectedChantier.getId()); // Accessing ServiceChantier methods via 'ps' instance
-                afficherChantier(); // Refresh the table after deleting a chantier
+                afficherChantier();
+                Notifications notification = Notifications.create()
+                        .title("Notification")
+                        .text("Category Deleted ")
+                        .graphic(null) // You can set a graphic if needed
+                        .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                        .position(Pos.BOTTOM_RIGHT);
+                notification.show();// Refresh the table after deleting a chantier
             } catch (SQLException e) {
                 showAlert("Erreur", "Erreur lors de la suppression du chantier!");
             }
@@ -154,7 +171,13 @@ public class Project {
 
                 // Call the updateOne function from the service to update the database
                 ps.updateOne(selectedChantier);
-
+                Notifications notification = Notifications.create()
+                        .title("Notification")
+                        .text("Category Updated ")
+                        .graphic(null) // You can set a graphic if needed
+                        .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                        .position(Pos.BOTTOM_RIGHT);
+                notification.show();
                 // Refresh the table view after updating
                 afficherChantier();
             } catch (SQLException | NumberFormatException e) {
@@ -167,7 +190,7 @@ public class Project {
     @FXML
     private StackPane contentArea;
     public void Tasks(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Tasks.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Product.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
