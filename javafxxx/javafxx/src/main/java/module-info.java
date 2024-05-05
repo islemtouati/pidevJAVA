@@ -4,6 +4,8 @@ module com.example.javafxx {
 
     requires com.dlsc.formsfx;
     requires java.sql;
+    requires itextpdf;
+    requires java.mail;
 
     opens com.example.javafxx to javafx.fxml;
     exports com.example.javafxx.controllers;

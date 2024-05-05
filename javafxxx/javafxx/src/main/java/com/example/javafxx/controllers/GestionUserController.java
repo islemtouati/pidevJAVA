@@ -1,5 +1,15 @@
 package com.example.javafxx.controllers;
-
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Phrase;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.List;
 import com.example.javafxx.entities.Utilisateur;
 import com.example.javafxx.services.UserService;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -17,12 +27,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GestionUserController implements Initializable {
     @FXML
     private TableView<Utilisateur> userTable;
+    @FXML
+    public Button exportPDF;
+    @FXML
+    private TextField searchTextField;
+    @FXML
+    private TableColumn<Utilisateur, Button> colBan;
     @FXML
     private TableColumn<Utilisateur, Integer> colId;
     @FXML
@@ -68,11 +85,7 @@ public class GestionUserController implements Initializable {
         colAdresse.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAdresse()));
         colRole.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRole()));
         colTel.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getTel()).asObject());
-        // Load users data into the table
-        userTable.setItems(FXCollections.observableArrayList(userService.getAllUsers()));
 
-
-        // Define actions for update and delete buttons
         // Set up cell factory for update button column
         colUpdate.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
@@ -95,6 +108,7 @@ public class GestionUserController implements Initializable {
             }
         });
 
+        // Set up cell factory for delete button column
         colDelete.setCellFactory(cell -> new TableCell<Utilisateur, Button>() {
             private final Button deleteButton = new Button("Delete");
 
@@ -108,7 +122,6 @@ public class GestionUserController implements Initializable {
                     setGraphic(deleteButton);
                     setText(null);
                     deleteButton.setOnAction(event -> {
-                        // Handle delete button action
                         Utilisateur user = getTableView().getItems().get(getIndex());
                         handleDelete(user);
                     });
@@ -116,20 +129,50 @@ public class GestionUserController implements Initializable {
             }
         });
 
-        btn_logout.setOnAction(new EventHandler<ActionEvent>() {
+        // Set up cell factory for ban button column
+        colBan.setCellFactory(param -> new TableCell<>() {
+            private final Button banButton = new Button("Ban");
+
+            {
+                banButton.setOnAction(event -> {
+                    Utilisateur user = getTableView().getItems().get(getIndex());
+                    handleBan(user);
+                });
+            }
+
             @Override
-            public void handle(ActionEvent event) {
-                userService.changeScene(event,"SignIn.fxml","log In !");
+            protected void updateItem(Button item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setGraphic(banButton);
+                    setText(null);
+                }
             }
         });
 
-        addUser.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                userService.changeScene(event,"AddUser.fxml","New user !");
-            }
+        // Load users data into the table
+        userTable.setItems(FXCollections.observableArrayList(userService.getAllUsers()));
+
+        // Define action for search text field
+        searchTextField.setOnKeyReleased(event -> handleSearch());
+
+        // Define action for export PDF button
+        exportPDF.setOnAction(this::handleExportPDF);
+
+        // Define action for logout button
+        btn_logout.setOnAction(event -> {
+            userService.changeScene(event, "SignIn.fxml", "Log In");
+        });
+
+        // Define action for add user button
+        addUser.setOnAction(event -> {
+            userService.changeScene(event, "AddUser.fxml", "New User");
         });
     }
+
 
     private void handleUpdate(Utilisateur user) {
 
@@ -163,8 +206,34 @@ public class GestionUserController implements Initializable {
             e.printStackTrace();
         }
     }
+    private void handleSearch() {
+        String searchCriteria = searchTextField.getText();
+        refreshTable(searchCriteria);
+    }
+    private void refreshTable(String searchCriteria) {
+        // Clear the table
+        userTable.getItems().clear();
+        // Fetch users based on search criteria
+        List<Utilisateur> users = userService.getAllUsers(searchCriteria);
+        // Add fetched users to the table
+        userTable.getItems().addAll(users);
+    }
 
-
+    @FXML
+    private void handleExportPDF(ActionEvent event) {
+        System.out.println("Export PDF button clicked");
+        try {
+            userService.exportUsersToPdf();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception as per your application's requirements
+        }
+    }
+    private void handleBan(Utilisateur user) {
+        // Implementation for banning the user
+        userService.banUser(user);
+        refreshUserTable(); // Assuming you have a method to refresh the user table
+    }
 }
 
 

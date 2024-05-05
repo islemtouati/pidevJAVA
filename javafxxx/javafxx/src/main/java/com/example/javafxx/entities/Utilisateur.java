@@ -10,7 +10,7 @@ public class Utilisateur {
     private int tel;
     private String password;
     private String role;
-    private boolean is_verified;
+    private int is_banned;
 
     public Utilisateur(String updatedNom, String updatedPrenom, String updatedEmail, String updatedAdresse, int updatedTel, String role) {
     }
@@ -20,6 +20,17 @@ public class Utilisateur {
     }
 
     public Utilisateur(String nom, String prenom, String email, String adresse, int i, String role, String mdp) {
+    }
+
+    public Utilisateur(int id, String nom, String prenom, String adresse, String email, int tel, String role, String password) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.tel = tel;
+        this.role = role;
+        this.password = password;
     }
 
     public int getId() {
@@ -86,12 +97,12 @@ public class Utilisateur {
         this.role = role;
     }
 
-    public boolean isIs_verified() {
-        return is_verified;
+    public int getis_banned() {
+        return is_banned;
     }
 
-    public void setIs_verified(boolean is_verified) {
-        this.is_verified = is_verified;
+    public void setis_banned(int is_banned) {
+        this.is_banned = is_banned;
     }
 
     @Override
@@ -105,7 +116,7 @@ public class Utilisateur {
                 ", tel=" + tel +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", is_verified=" + is_verified +
+                ", is_banned=" + is_banned +
                 '}';
     }
 }

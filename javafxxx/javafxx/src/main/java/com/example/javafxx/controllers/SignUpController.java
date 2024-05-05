@@ -99,7 +99,7 @@ public class SignUpController implements Initializable {
 
     private boolean isValidPassword(String password) {
         // Vérifiez si le mot de passe contient au moins une lettre majuscule, un chiffre, un caractère spécial, et est d'au moins 8 caractères
-        String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!/])(?=\\S+$).{8,}$";
+        String passwordPattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
         return Pattern.compile(passwordPattern).matcher(password).matches();
     }
 }
