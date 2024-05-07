@@ -1,18 +1,30 @@
 package com.esprit.controllers.Reponse;
 
+import com.esprit.models.Reclamation;
 import com.esprit.models.Reponse;
+import com.esprit.services.ReclamationService;
 import com.esprit.services.ReponseService;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 public class AfficherReponseController {
 
@@ -36,6 +48,9 @@ public class AfficherReponseController {
 
     @FXML
     private StackPane contentPane;
+
+    @FXML
+    private Button chartButton;
     public void setMainContent(StackPane contentPane) {
         this.contentPane = contentPane;
     }
@@ -127,5 +142,105 @@ public class AfficherReponseController {
                 }
             });
         }
+    }
+
+    public void generatePDF(ActionEvent actionEvent) {
+        /*Document document = new Document();
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Reclamations.pdf"));
+            document.open();
+            ReclamationService ReclamationService = new ReclamationService();
+            List<Reclamation> reclamationsList = ReclamationService.getAll();
+            ObservableList<Reclamation> reclamations = FXCollections.observableArrayList(reclamationsList);
+            for (Reclamation reclamation : reclamations) {
+                document.add(new Paragraph("ID: " + reclamation.getId()));
+                document.add(new Paragraph("User ID: " + reclamation.getIdUser()));
+                document.add(new Paragraph("Date: " + reclamation.getDateR().toString()));
+                document.add(new Paragraph("Description: " + reclamation.getDescription()));
+                document.add(new Paragraph("Etat: " + reclamation.getEtat()));
+                document.add(new Paragraph("----------------------------------"));
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Generated");
+            alert.setHeaderText(null);
+            alert.setContentText("PDF file 'Reclamations.pdf' has been generated successfully!");
+            alert.showAndWait();
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Generate PDF");
+            alert.setContentText("There was an error: " + e.getMessage());
+            alert.showAndWait();
+        } finally {
+            document.close();
+        }*/
+
+        Document document = new Document(PageSize.A4.rotate());
+
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream("Reclamations.pdf"));
+            document.open();
+
+            ReclamationService reclamationService = new ReclamationService();
+            List<Reclamation> reclamationsList = reclamationService.getAll(); // Obtenez la liste de réclamations
+            ObservableList<Reclamation> reclamations = FXCollections.observableArrayList(reclamationsList); // Convertissez la liste en ObservableList
+
+            PdfPTable table = new PdfPTable(5); // Créez un tableau avec 5 colonnes
+            table.addCell("ID");
+            table.addCell("User ID");
+            table.addCell("Date");
+            table.addCell("Description");
+            table.addCell("État");
+
+            for (Reclamation reclamation : reclamations) {
+                table.addCell(String.valueOf(reclamation.getId()));
+                table.addCell(String.valueOf(reclamation.getIdUser()));
+                table.addCell(reclamation.getDateR().toString());
+                table.addCell(reclamation.getDescription());
+                table.addCell(reclamation.getEtat());
+            }
+
+            document.add(table);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Généré");
+            alert.setHeaderText(null);
+            alert.setContentText("Le fichier PDF 'Reclamations.pdf' a été généré avec succès!");
+            alert.showAndWait();
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Échec de la Génération du PDF");
+            alert.setContentText("Une erreur s'est produite: " + e.getMessage());
+            alert.showAndWait();
+        } finally {
+            document.close();
+        }
+
+
+
+    }
+
+    public void Navigatetochart(ActionEvent Event) {
+        try {
+            // Charger le fichier FXML de la page cible
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reponse/chart.fxml"));
+            Parent chartView = loader.load();
+
+            // Obtenir la scène actuelle et définir la nouvelle vue comme son contenu
+            Stage stage = (Stage) ((Node) Event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(chartView);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

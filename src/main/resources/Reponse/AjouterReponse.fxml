@@ -11,6 +11,11 @@
            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.Reponse.AjouterReponseController">
     <VBox fx:id="mainVBox" spacing="20">
         <children>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Recherche :"/>
+                <TextField fx:id="searchField" promptText="Recherche par ID, Date ou Description"/>
+                <Button text="Rechercher" onAction="#search"/>
+            </HBox>
             <TableView fx:id="reclamationTableView" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn text="ID">

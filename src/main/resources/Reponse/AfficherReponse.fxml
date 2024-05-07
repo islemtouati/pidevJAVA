@@ -20,6 +20,8 @@
                     <HBox spacing="10">
                         <children>
                             <Button fx:id="addButton" onAction="#addReponse" styleClass="crud-button" text="Ajouter" />
+                            <Button fx:id="pdfButton" onAction="#generatePDF" styleClass="crud-button" text="PDF" />
+                            <Button fx:id="chartButton" onAction="#Navigatetochart" styleClass="crud-button" text="Charte" />
                         </children>
                     </HBox>
                 </children>
