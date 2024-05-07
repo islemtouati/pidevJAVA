@@ -1,42 +1,38 @@
 package com.example.ghada.Model;
 
-import java.sql.Date;
+public class Command {
 
-public class Commande {
-private int id;
-private int utilisateur_id;
-private String created_at;
-private String transporteur_name;
-private int transporteur_price;
-private int is_paid;
-private String method;
-private String reference;
-private String stipe_session_id;
-private String paypal_commande_id;
+    int id;
+    int user_id;
+    String nom_utilisateur;
+    String prenom_utilisateur;
+    String adresse_utilisateur;
+    int prix_total;
+    int Tel_utilis;
+    String pays_utilis;
+    String mode_p;
 
-    public Commande(int id, int utilisateur_id, String created_at, String transporteur_name, int transporteur_price, int is_paid, String method, String reference, String stipe_session_id, String paypal_commande_id) {
+    public Command(int id,int user_id, String nom_utilisateur, String prenom_utilisateur, String adresse_utilisateur,  int prix_total,  int tel_utilis, String pays_utilis, String mode_p) {
         this.id = id;
-        this.utilisateur_id = utilisateur_id;
-        this.created_at = created_at;
-        this.transporteur_name = transporteur_name;
-        this.transporteur_price = transporteur_price;
-        this.is_paid = is_paid;
-        this.method = method;
-        this.reference = reference;
-        this.stipe_session_id = stipe_session_id;
-        this.paypal_commande_id = paypal_commande_id;
+        this.user_id= user_id;
+        this.nom_utilisateur = nom_utilisateur;
+        this.prenom_utilisateur = prenom_utilisateur;
+        this.adresse_utilisateur = adresse_utilisateur;
+        this.prix_total = prix_total;
+        this.Tel_utilis = tel_utilis;
+        this.pays_utilis = pays_utilis;
+        this.mode_p = mode_p;
     }
 
-    public Commande(int utilisateur_id, String created_at, String transporteur_name, int transporteur_price, int is_paid, String method, String reference, String stipe_session_id, String paypal_commande_id) {
-        this.utilisateur_id = utilisateur_id;
-        this.created_at = created_at;
-        this.transporteur_name = transporteur_name;
-        this.transporteur_price = transporteur_price;
-        this.is_paid = is_paid;
-        this.method = method;
-        this.reference = reference;
-        this.stipe_session_id = stipe_session_id;
-        this.paypal_commande_id = paypal_commande_id;
+    public Command(int user_id,String nom_utilisateur, String prenom_utilisateur, String adresse_utilisateur,  int prix_total, int tel_utilis, String pays_utilis, String mode_p) {
+       this.user_id = user_id;
+        this.nom_utilisateur = nom_utilisateur;
+        this.prenom_utilisateur = prenom_utilisateur;
+        this.adresse_utilisateur = adresse_utilisateur;
+        this.prix_total = prix_total;
+        this.Tel_utilis = tel_utilis;
+        this.pays_utilis = pays_utilis;
+        this.mode_p = mode_p;
     }
 
     public int getId() {
@@ -46,92 +42,86 @@ private String paypal_commande_id;
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getUtilisateur_id() {
-        return utilisateur_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUtilisateur_id(int utilisateur_id) {
-        this.utilisateur_id = utilisateur_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public String getCreated_at() {
-        return created_at;
+
+    public String getNom_utilisateur() {
+        return nom_utilisateur;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setNom_utilisateur(String nom_utilisateur) {
+        this.nom_utilisateur = nom_utilisateur;
     }
 
-    public String getTransporteur_name() {
-        return transporteur_name;
+    public String getPrenom_utilisateur() {
+        return prenom_utilisateur;
     }
 
-    public void setTransporteur_name(String transporteur_name) {
-        this.transporteur_name = transporteur_name;
+    public void setPrenom_utilisateur(String prenom_utilisateur) {
+        this.prenom_utilisateur = prenom_utilisateur;
     }
 
-    public int getTransporteur_price() {
-        return transporteur_price;
+    public String getAdresse_utilisateur() {
+        return adresse_utilisateur;
     }
 
-    public void setTransporteur_price(int transporteur_price) {
-        this.transporteur_price = transporteur_price;
+    public void setAdresse_utilisateur(String adresse_utilisateur) {
+        this.adresse_utilisateur = adresse_utilisateur;
     }
 
-    public int getIs_paid() {
-        return is_paid;
+
+
+    public int getPrix_total() {
+        return prix_total;
     }
 
-    public void setIs_paid(int is_paid) {
-        this.is_paid = is_paid;
+    public void setPrix_total(int prix_total) {
+        this.prix_total = prix_total;
     }
 
-    public String getMethod() {
-        return method;
+
+    public int getTel_utilis() {
+        return Tel_utilis;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public void setTel_utilis(int tel_utilis) {
+        Tel_utilis = tel_utilis;
     }
 
-    public String getReference() {
-        return reference;
+    public String getPays_utilis() {
+        return pays_utilis;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setPays_utilis(String pays_utilis) {
+        this.pays_utilis = pays_utilis;
     }
 
-    public String getStipe_session_id() {
-        return stipe_session_id;
+    public String getMode_p() {
+        return mode_p;
     }
 
-    public void setStipe_session_id(String stipe_session_id) {
-        this.stipe_session_id = stipe_session_id;
-    }
-
-    public String getPaypal_commande_id() {
-        return paypal_commande_id;
-    }
-
-    public void setPaypal_commande_id(String paypal_commande_id) {
-        this.paypal_commande_id = paypal_commande_id;
+    public void setMode_p(String mode_p) {
+        this.mode_p = mode_p;
     }
 
     @Override
     public String toString() {
-        return "Commande{" +
+        return "Command{" +
                 "id=" + id +
-                ", utilisateur_id=" + utilisateur_id +
-                ", created_at=" + created_at +
-                ", transporteur_name='" + transporteur_name + '\'' +
-                ", transporteur_price=" + transporteur_price +
-                ", is_paid=" + is_paid +
-                ", method='" + method + '\'' +
-                ", reference='" + reference + '\'' +
-                ", stipe_session_id='" + stipe_session_id + '\'' +
-                ", paypal_commande_id='" + paypal_commande_id + '\'' +
+                ", user_id=" + user_id +
+                ", nom_utilisateur='" + nom_utilisateur + '\'' +
+                ", prenom_utilisateur='" + prenom_utilisateur + '\'' +
+                ", adresse_utilisateur='" + adresse_utilisateur + '\'' +
+                ", prix_total=" + prix_total +
+                ", Tel_utilis=" + Tel_utilis +
+                ", pays_utilis='" + pays_utilis + '\'' +
+                ", mode_p='" + mode_p + '\'' +
                 '}';
     }
 }

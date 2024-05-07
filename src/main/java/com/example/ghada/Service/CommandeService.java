@@ -1,7 +1,7 @@
 package com.example.ghada.Service;
 
 
-import com.example.ghada.Model.Commande;
+import com.example.ghada.Model.Command;
 import com.example.ghada.Model.IService;
 
 import com.example.ghada.util.DataSource;
@@ -13,44 +13,41 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandeService implements IService<Commande> {
+
+public class CommandService implements IService<Command> {
     private Connection cnx;
     private PreparedStatement prs;
-    public CommandeService(){
+    public CommandService(){
         cnx= DataSource.getInstance().getConnection();
     }
-    public void add(Commande C) {
-        String requete = "insert into Commande(utilisateur_id,created_at,transporteur_name,transporteur_price,is_paid,method,reference,stipe_session_id,paypal_commande_id) values(?,?,?,?,?,?,?,?,?) ";
+    public void add(Command C) {
+        String requete = "insert into Commande( nom_utilisateur,prenom_utilisateur,adresse_utilisateur,prix_total,Tel_utilis,pays_utilis,mode_p) values(?,?,?,?,?,?,?) ";
         try {
             prs = cnx.prepareStatement(requete);
-            prs.setInt(2, C.getUtilisateur_id());
-            prs.setString(4, C.getCreated_at());
-            prs.setString(5, C.getTransporteur_name());
-            prs.setInt(6, C.getTransporteur_price());
-            prs.setInt(1,C.getIs_paid());
-            prs.setString(4, C.getMethod());
-            prs.setString(5, C.getReference());
-            prs.setString(6, C.getStipe_session_id());
-            prs.setString(1,C.getPaypal_commande_id());
+            prs.setString(1, C.getNom_utilisateur());
+            prs.setString(2, C.getPrenom_utilisateur());
+            prs.setString(3, C.getAdresse_utilisateur());
+            prs.setInt(4, C.getPrix_total());
+            prs.setInt(5,C.getTel_utilis());
+            prs.setString(6,C.getPays_utilis());
+            prs.setString(7, C.getMode_p());
             prs.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public void update(Commande commande, int id) {
-        String requete="update commande set utilisateur_id=?,created_at=?,transporteur_name=?,transporteur_price=?,is_paid=?,method=?,reference=?,stipe_session_id=?,paypal_commande_id=? where id_commande=?";
+    public void update(Command commande, int id) {
+        String requete="update commande set  nom_utilisateur=?,prenom_utilisateur=?,adresse_utilisateur=?,prix_total=?,Tel_utilis=?,pays_utilis=?,mode_p=? where id_command=?";
         {try {
             prs = cnx.prepareStatement(requete);
 
-            prs.setInt(2, commande.getUtilisateur_id());
-            prs.setString(4, commande.getCreated_at());
-            prs.setString(5, commande.getTransporteur_name());
-            prs.setInt(6, commande.getTransporteur_price());
-            prs.setInt(1,commande.getIs_paid());
-            prs.setString(4, commande.getMethod());
-            prs.setString(5, commande.getReference());
-            prs.setString(6, commande.getStipe_session_id());
-            prs.setString(1,commande.getPaypal_commande_id());
+            prs.setString(1, commande.getNom_utilisateur());
+            prs.setString(2, commande.getPrenom_utilisateur());
+            prs.setString(3, commande.getAdresse_utilisateur());
+            prs.setInt(4, commande.getPrix_total());
+            prs.setInt(5,commande.getTel_utilis());
+            prs.setString(6,commande.getPays_utilis());
+            prs.setString(7, commande.getMode_p());
             this.prs.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,7 +56,7 @@ public class CommandeService implements IService<Commande> {
     }
 
     public void delete(int id)   {
-        String requete="delete from commande where id_commande=?";
+        String requete="delete from commande where id_command=?";
 
         try {
             prs=cnx.prepareStatement(requete);
@@ -78,23 +75,20 @@ public class CommandeService implements IService<Commande> {
         }
         System.out.println("Suppression Livraison effectue");
     }
-    public List<Commande> getAll() {
+    public List<Command> getAll() {
         String requete="Select * from commande";
-        List<Commande> list=new ArrayList<>();
+        List<Command> list=new ArrayList<>();
         try {
             ResultSet rs=prs.executeQuery(requete);
             while (rs.next()) {
-                list.add(new Commande(
-                        rs.getInt("id"),
-                        rs.getInt("utilisateur_id"),
-                        rs.getString("created_at"),
-                        rs.getString("transporteur_name"),
-                        rs.getInt("transporteur_price"),
-                        rs.getInt("is_paid"),
-                        rs.getString("method"),
-                        rs.getString("reference"),
-                        rs.getString("stipe_session_id"),
-                        rs.getString("paypal_commande_id")));
+                list.add(new Command(
+                        rs.getString("nom_utilistaeur"),
+                        rs.getString("prenom_utilisateur"),
+                        rs.getString("Addresse_utilisateur"),
+                        rs.getInt("prix_totale"),
+                        rs.getInt("tel_utilis"),
+                        rs.getString("pays_utilis"),
+                        rs.getString("mose_p")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -102,7 +96,7 @@ public class CommandeService implements IService<Commande> {
         return list;
 
     }
-    public Commande getById(int id) {
+    public Command getById(int id) {
         return null;
     }
 
