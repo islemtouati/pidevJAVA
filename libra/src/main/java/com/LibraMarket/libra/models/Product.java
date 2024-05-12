@@ -38,6 +38,15 @@ public class Product {
         this.description = description;
         this.category_id = category_id; // Set the category ID
     }
+    public Product(int id ,String titre, double prix, String img, String description, catego category) {
+        // Initialize the fields with the provided values
+        this.id=id;
+        this.titre = titre;
+        this.prix = prix;
+        this.img = img;
+        this.description = description;
+        this.category = category; // Set the category ID
+    }
     /*public Product(String titre, float prix, String img, String description, int categoryId) {
         // Initialize the fields with the provided values
         this.titre = titre;
@@ -103,4 +112,7 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    // Change the getter and setter for categoryTitre
+
 }

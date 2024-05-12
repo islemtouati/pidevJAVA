@@ -2,7 +2,7 @@
 -fx-background-color: #fff;
         }
 .navbar{
-        -fx-background-color: #F8BC24;
+        -fx-background-color: #742b1f;
 }.navbar-top{
         -fx-background-color: #000103;
 }
@@ -15,7 +15,7 @@
 }
 .button:hover
 {
-        -fx-background-color: #26D48C;
+        -fx-background-color: #e2c09e;
 }
 .button:pressed
 {

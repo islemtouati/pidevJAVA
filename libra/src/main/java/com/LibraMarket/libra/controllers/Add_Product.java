@@ -98,6 +98,14 @@ public class Add_Product {
     }
     public void ajouterProduct(ActionEvent event) {
         try {
+            Recaptcha recaptcha = new Recaptcha();
+            String captchaText = recaptcha.generateCaptcha();
+            boolean isCaptchaValid = recaptcha.showCaptchaDialog(captchaText);
+            if (!isCaptchaValid) {
+                showAlert("recapcha invalide", "Veuillez réssayer !");
+
+                return;
+            }
             // Validate titre
             String titre = titreField.getText();
             if (titre.isEmpty() || titre.length() > 15) {

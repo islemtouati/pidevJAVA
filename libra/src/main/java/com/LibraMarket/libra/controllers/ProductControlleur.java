@@ -1,8 +1,9 @@
 package com.LibraMarket.libra.controllers;
 
-import com.LibraMarket.libra.models.GeneratePdf;
 import com.LibraMarket.libra.models.Product;
+import com.LibraMarket.libra.services.ServiceCatego;
 import com.LibraMarket.libra.services.ServiceProduct;
+import com.LibraMarket.libra.utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,13 +15,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.io.File;
+
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,35 +63,62 @@ public class ProductControlleur {
     private TableColumn<Product, Void> ts_view_action;
 
 
-    @FXML
-    void generatePDF(ActionEvent event) {
+
+    /*public ObservableList<Product> getOeuvre() {
+        ObservableList<Product> oeuvreList = FXCollections.observableArrayList();
+        String query = "SELECT oeuvre.*, categorie.nom_cat FROM oeuvre JOIN categorie ON oeuvre.id_cat = categorie.id_cat";
+        ServiceProduct so = new ServiceProduct();
+        ServiceCatego sc = new ServiceCatego();
+        Connection con = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
         try {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Save PDF File");
-            fileChooser.setInitialFileName("liste_oeuvres.pdf");
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+            con = DBConnection.getInstance().getCnx();
+            st = con.prepareStatement(query);
+            rs = st.executeQuery();
 
-            File file = fileChooser.showSaveDialog(pdf.getScene().getWindow());
+            while (rs.next()) {
 
-            if (file != null) {
-                ServiceProduct serviceOeuvre = new ServiceProduct();
-                List<Product> oeuvresList = serviceOeuvre.getAllOeuvres();
-                ObservableList<Product> oeuvres = FXCollections.observableArrayList(oeuvresList);
+                Product oeuvre = new Product();
+                oeuvre.setId(rs.getInt("id_oeuvre"));
+                oeuvre.setTitre(rs.getString("titre"));
+                oeuvre.setDescription(rs.getString("description"));
+                oeuvre.setPrix(rs.getFloat("prix"));
+                oeuvre.setCategory_id(rs.getInt("id_cat"));
+                // Obtenez la catégorie à partir de son ID
+                System.out.println("ss");
 
-                if (!oeuvres.isEmpty()) {
-                    GeneratePdf.generatePDF(oeuvres, file);
-                    System.out.println("PDF generated successfully.");
-                } else {
-                    System.out.println("No data to generate PDF.");
-                }
-            } else {
-                System.out.println("No file selected.");
+                //Categorie categorie = sc.getCategorieById(categorieId);
+
+                // Assurez-vous que la catégorie n'est pas null avant de définir son nom
+                //oeuvre.setNomCategorie(categorie.getNom_cat());
+
+                oeuvreList.add(oeuvre);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("An error occurred while generating PDF.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Erreur lors de la récupération des oeuvres.", ex);
+        } finally {
+            // Fermeture des ressources
+            try {
+
+
+                if (rs != null) rs.close();
+                System.out.println("88");
+                if (st != null) st.close();
+                System.out.println("99");
+                if (con != null) con.close();
+                System.out.println("00");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
+        System.out.println("vv");
+
+        return oeuvreList;
+    }*/
+    @FXML
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -166,6 +199,42 @@ public class ProductControlleur {
 
         return taskCounts;
     }
+    /*@FXML
+    public void showOeuvres1(){
+        ObservableList<Product> list = ();
+        tvOeuvre.setItems(list);
+        tvOeuvre.setItems(list);
+        coltitre.setCellValueFactory(new PropertyValueFactory<String,Product>("titre"));
+        coldescription.setCellValueFactory(new PropertyValueFactory<String,Oeuvre>("description"));
+        colprix.setCellValueFactory(new PropertyValueFactory<Float,Oeuvre>("prix"));
+        coldate.setCellValueFactory(new PropertyValueFactory<String,Oeuvre>("date"));
+        colstatus.setCellValueFactory(new PropertyValueFactory<String,Oeuvre>("Status"));
+        ServiceCategorie sc = new ServiceCategorie();
+        colNomCat.setCellValueFactory(new PropertyValueFactory<Integer,Oeuvre>("id_cat"));
+        FilteredList<Oeuvre> filteredData = new FilteredList<>(list, b-> true);
+        searchField.textProperty().addListener((observable , oldValue, newValue) -> {
+            filteredData.setPredicate(Oeuvre -> {
+                if(newValue.isEmpty() || newValue.isBlank() || newValue == null){
+                    return true;
+                }
+                String searchKeyword = newValue.toLowerCase();
+                if(Oeuvre.getTitre().toLowerCase().indexOf(searchKeyword) > -1){
+                    return true;
+                }
+                else if(Oeuvre.getStatus().toLowerCase().indexOf(searchKeyword) > -1){
+                    return true;
+                }
+                else if (String.valueOf(Oeuvre.getId_oeuvre()).toLowerCase().contains(searchKeyword.toLowerCase())) {                    return true;
+
+
+                }else
+                    return false;
+            });
+        });
+        SortedList<Oeuvre> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvOeuvre.comparatorProperty());
+        tvOeuvre.setItems(sortedData);
+    }*/
 
     @FXML
     void initialize() throws SQLException {
@@ -285,6 +354,27 @@ public class ProductControlleur {
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Error", "Error updating PieChart data: " + e.getMessage());
+        }
+    }
+    @FXML
+    private void handleGeneratePDF(ActionEvent event) {
+        // Instancier la classe pdf
+        pdf pdfGenerator = new pdf();
+
+        // Obtenez le chemin où le fichier PDF doit être enregistré
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.setInitialFileName("product.pdf");
+        File selectedFile = fileChooser.showSaveDialog(null);
+
+        if (selectedFile != null) {
+            String filePath = selectedFile.getAbsolutePath();
+
+            // Appelez la méthode pour générer le PDF en utilisant la classe pdf
+            pdfGenerator.generatePDF(ts_view, filePath);
+            System.out.println("PDF generated successfully.");
+        } else {
+            System.out.println("PDF generation canceled.");
         }
     }
 

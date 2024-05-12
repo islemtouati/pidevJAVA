@@ -21,16 +21,16 @@
     <left>
         <VBox prefHeight="614.0" prefWidth="158.0" styleClass="navbar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
             <children>
-                <VBox prefHeight="582.0" prefWidth="158.0" spacing="10.0">
+                <VBox prefHeight="582.0" prefWidth="158.0" spacing="10.0" stylesheets="@../style.css">
                     <children>
-                        <Label alignment="CENTER" prefHeight="23.0" prefWidth="154.0" text="Browse :" textAlignment="CENTER">
+                        <Label alignment="CENTER" prefHeight="23.0" prefWidth="154.0" text="Browse :" textAlignment="CENTER" textFill="WHITE">
                             <font>
-                                <Font name="Arial" size="14.0" />
+                                <Font name="Comic Sans MS" size="14.0" />
                             </font>
                         </Label>
                         <HBox alignment="CENTER" prefHeight="45.0" prefWidth="158.0" spacing="15.0" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Home">
+                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Home" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -47,7 +47,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#project" prefHeight="45.0" prefWidth="158.0" text="Category">
+                                <Button mnemonicParsing="false" onAction="#project" prefHeight="45.0" prefWidth="158.0" text="Category" textFill="WHITE">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -76,7 +76,7 @@
                             <children>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/location-sign_17736.png" />
+                                        <Image url="@../../../../../../../../location%20image.png" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="16.0" prefWidth="246.0" text="ty cite ghazela petite arianna, esprit" textFill="#788081">
@@ -90,7 +90,7 @@
                             <children>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/email_542689.png" />
+                                        <Image url="@../../../../../../../../mail%20icon.png" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="16.0" prefWidth="173.0" text="LibraMarket@expert.com" textFill="#788081">
@@ -129,12 +129,12 @@
                             <children>
                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="38.0" text="Libra" textAlignment="CENTER" textFill="WHITE">
                                     <font>
-                                        <Font name="SansSerif Bold" size="15.0" />
+                                        <Font name="Comic Sans MS Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label alignment="CENTER" prefHeight="60.0" prefWidth="62.0" text="Market" textAlignment="CENTER" textFill="#26d48c">
+                                <Label alignment="CENTER" prefHeight="60.0" prefWidth="62.0" text="Market" textAlignment="CENTER" textFill="#d7a777">
                                     <font>
-                                        <Font name="SansSerif Bold" size="17.0" />
+                                        <Font name="Comic Sans MS Bold" size="17.0" />
                                     </font>
                                 </Label>
                             </children>
@@ -151,7 +151,7 @@
                             </children>
                         </HBox>
                         <Pane prefHeight="60.0" prefWidth="130.0" HBox.hgrow="ALWAYS" />
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" text="Islem touati">
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" text="Islem touati" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -178,7 +178,7 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <StackPane fx:id="contentArea" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <StackPane fx:id="contentArea" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0" />
             </children>
         </AnchorPane>
     </center>

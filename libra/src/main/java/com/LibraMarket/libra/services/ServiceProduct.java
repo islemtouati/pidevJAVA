@@ -1,11 +1,14 @@
 package com.LibraMarket.libra.services;
 
 import com.LibraMarket.libra.models.Product;
+import com.LibraMarket.libra.models.catego;
 import com.LibraMarket.libra.utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.sql.DriverManager.getConnection;
 
 public class ServiceProduct implements CRUD<Product> {
     private Connection cnx;
@@ -74,6 +77,7 @@ public class ServiceProduct implements CRUD<Product> {
         return productList;
     }
 
+
     @Override
     public List<Product> selectListDerou() throws SQLException {
         return null;
@@ -119,6 +123,77 @@ public class ServiceProduct implements CRUD<Product> {
 
         return oeuvres;
     }
+    public List<Product> searchByTitre(String titre) throws SQLException {
+        List<Product> oeuvres = new ArrayList<>();
+        String query = "SELECT * FROM product WHERE titre LIKE ?";
+
+        try (Connection connection = DBConnection.getInstance().getCnx();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1,  titre + "%"); // Search for titre containing the given string
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Create Product objects from the result set and add them to the list
+                    Product oeuvre = new Product(
+                            resultSet.getInt("id"),
+                            resultSet.getString("titre"),
+                            resultSet.getDouble("prix"),
+                            resultSet.getString("img"),
+                            resultSet.getString("description"),
+                            resultSet.getInt("category_id")
+                    );
+                    oeuvres.add(oeuvre);
+                }
+            }
+        }
+
+        return oeuvres;
+    }
+
+    public List<Product> getAll() {
+        String requete = "Select * from product";
+        List<Product> list = new ArrayList<>();
+        try (PreparedStatement prs = cnx.prepareStatement(requete)) {
+            ResultSet rs = prs.executeQuery(requete);
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getInt("id"),
+                        rs.getString("titre"),
+                        rs.getDouble("prix"),
+                        rs.getString("img"),
+                        rs.getString("description"),
+                        rs.getInt("category_id")));
 
 
+
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+
+    }
+    public List<Product> rechercherProduit(String searchTerm) throws SQLException {
+        List<Product> searchResults = new ArrayList<>();
+        String query = "SELECT id, titre, description, img, prix FROM product WHERE titre LIKE ? OR description LIKE ? OR prix LIKE ?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
+            String searchPattern = "%" + searchTerm + "%";
+            preparedStatement.setString(1, searchPattern);
+            preparedStatement.setString(2, searchPattern);
+            preparedStatement.setString(3, searchPattern);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product();
+                    product.setId(resultSet.getInt("id"));
+                    product.setTitre(resultSet.getString("titre"));
+                    product.setDescription(resultSet.getString("description"));
+                    product.setImg(resultSet.getString("img")); // Set the image URL
+                    product.setPrix(resultSet.getDouble("prix")); // Set the date
+                    searchResults.add(product);
+                }
+            }
+        }
+        return searchResults;
+    }
 }
